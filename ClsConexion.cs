@@ -70,5 +70,62 @@ namespace PryVentasVerduleros_Cantallops
 
             }
         }
+
+        public void RegistrarVenta(string Vendedor, string Producto, int Cantidad)
+        {
+            string codProducto;
+            string codVendedor;
+            string conexion = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=VERDULEROS.mdb;";
+            try 
+            {
+                cnn = new OleDbConnection(conexion);
+                cmdVendedor = new OleDbCommand();
+                cmdVendedor.Connection = cnn;
+                cmdVendedor.CommandType = CommandType.TableDirect;
+                cmdVendedor.CommandText = "Vendedores";
+                cmdProducto = new OleDbCommand();
+                cmdProducto.Connection = cnn;
+                cmdProducto.CommandType = CommandType.TableDirect;
+                cmdProducto.CommandText = "Productos";
+                cmdVentas = new OleDbCommand();
+                cmdVentas.Connection = cnn;
+                cmdVentas.CommandType = CommandType.TableDirect;
+                cmdVentas.CommandText = "Ventas";
+                cnn.Open();
+                rdrVendedor = cmdVendedor.ExecuteReader();
+                rdrProducto = cmdProducto.ExecuteReader();
+                rdrVentas = cmdVentas.ExecuteReader();
+
+                while (rdrVendedor.Read())
+                {
+                    if (Vendedor == rdrVendedor[1].ToString())
+                    {
+                        codVendedor = rdrVendedor[0].ToString();
+                    }
+                    
+
+                }
+
+                while (rdrProducto.Read())
+                {
+                    if (Producto == rdrProducto[1].ToString())
+                    {
+                        codProducto = rdrProducto[0].ToString();
+                    }
+                }
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message, "", MessageBoxButtons.OK);
+
+            }
+
+
+
+        }
     }
 }

@@ -30,5 +30,10 @@ namespace PryVentasVerduleros_Cantallops
             ClsConexion objCnn = new ClsConexion();
             objCnn.CargarDatos(cmbProducto, cmbVendedor);
         }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -94,6 +94,7 @@
             this.btnRegistrar.TabIndex = 10;
             this.btnRegistrar.Text = "Registrar Venta";
             this.btnRegistrar.UseVisualStyleBackColor = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // cmbProducto
             // 
