@@ -92,7 +92,7 @@ namespace PryVentasVerduleros_Cantallops
                 cmdVentas.CommandType = CommandType.TableDirect;
                 cmdVentas.CommandText = "Ventas";
                 cnn.Open();
-                //
+                //fa
                 rdrVendedor = cmdVendedor.ExecuteReader();
                 rdrProducto = cmdProducto.ExecuteReader();
                 rdrVentas = cmdVentas.ExecuteReader();
