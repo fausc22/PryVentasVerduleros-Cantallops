@@ -29,39 +29,39 @@ namespace PryVentasVerduleros_Cantallops
                 cnn = new OleDbConnection(conexion);
                 cmdVendedor = new OleDbCommand();
                 cmdVendedor.Connection = cnn;
-                cmdVendedor.CommandType= CommandType.TableDirect;
+                cmdVendedor.CommandType = CommandType.TableDirect;
                 cmdVendedor.CommandText = "Vendedores";
                 cmdProducto = new OleDbCommand();
                 cmdProducto.Connection = cnn;
                 cmdProducto.CommandType = CommandType.TableDirect;
                 cmdProducto.CommandText = "Productos";
-                cmdVentas = new OleDbCommand();
-                cmdVentas.Connection = cnn;
-                cmdVentas.CommandType = CommandType.TableDirect;
-                cmdVentas.CommandText = "Ventas";
                 cnn.Open();
                 rdrVendedor = cmdVendedor.ExecuteReader();
                 rdrProducto = cmdProducto.ExecuteReader();
-                rdrVentas = cmdVentas.ExecuteReader();
 
-                HashSet<string> Vendedores = new HashSet<string>();
-                HashSet<string> Productos = new HashSet<string>();
+                cmbVendedor.Items.Clear();
+                cmbProducto.Items.Clear();
 
+                DataTable dtVendedor = new DataTable(); 
+                DataTable dtProducto = new DataTable(); 
 
-                while (rdrVendedor.Read())
+                if (rdrVendedor.HasRows)
                 {
-                    string Vendedor = rdrVendedor[1].ToString();
-                    Vendedores.Add(Vendedor);
+                    dtVendedor.Load(rdrVendedor);
+                    cmbVendedor.DataSource = dtVendedor;
+                    cmbVendedor.ValueMember = "IdVendedor";
+                    cmbVendedor.DisplayMember = "NombreVendedor";
                 }
 
-                while (rdrProducto.Read())
+                if (rdrProducto.HasRows)
                 {
-                    string Producto = rdrProducto[1].ToString();
-                    Productos.Add(Producto);
+                    dtProducto.Load(rdrProducto);
+                    cmbProducto.DataSource = dtProducto;
+                    cmbProducto.ValueMember = "Codigo del Producto";
+                    cmbProducto.DisplayMember = "NomProducto";
                 }
+               
 
-                cmbProducto.Items.AddRange(Productos.ToArray());
-                cmbVendedor.Items.AddRange(Vendedores.ToArray());
 
             }
             catch (Exception ex)
@@ -71,49 +71,22 @@ namespace PryVentasVerduleros_Cantallops
             }
         }
 
-        public void RegistrarVenta(string Vendedor, string Producto, int Cantidad)
+        public void RegistrarVenta(string Vendedor, string Producto, DateTime FechaVenta,  string Cantidad)
         {
-            string codProducto;
-            string codVendedor;
+            
             string conexion = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=VERDULEROS.mdb;";
+            string sql = "INSERT INTO Ventas ([Cod Vendedor], [Cod Producto], Fecha, Kilos) VALUES ('" + Vendedor + "' , '" + Producto + "' , '" + FechaVenta.ToShortDateString() + "' , '" + Cantidad + "')";
             try 
             {
                 cnn = new OleDbConnection(conexion);
                 cmdVendedor = new OleDbCommand();
                 cmdVendedor.Connection = cnn;
-                cmdVendedor.CommandType = CommandType.TableDirect;
-                cmdVendedor.CommandText = "Vendedores";
-                cmdProducto = new OleDbCommand();
-                cmdProducto.Connection = cnn;
-                cmdProducto.CommandType = CommandType.TableDirect;
-                cmdProducto.CommandText = "Productos";
-                cmdVentas = new OleDbCommand();
-                cmdVentas.Connection = cnn;
-                cmdVentas.CommandType = CommandType.TableDirect;
-                cmdVentas.CommandText = "Ventas";
-                cnn.Open();
-                //fa
-                rdrVendedor = cmdVendedor.ExecuteReader();
-                rdrProducto = cmdProducto.ExecuteReader();
-                rdrVentas = cmdVentas.ExecuteReader();
+                cmdVendedor.Connection.Open();
+                cmdVendedor.CommandType = CommandType.Text;
+                cmdVendedor.CommandText = sql;
 
-                while (rdrVendedor.Read())
-                {
-                    if (Vendedor == rdrVendedor[1].ToString())
-                    {
-                        codVendedor = rdrVendedor[0].ToString();
-                    }
-                    
+                cmdVendedor.ExecuteNonQuery();
 
-                }
-
-                while (rdrProducto.Read())
-                {
-                    if (Producto == rdrProducto[1].ToString())
-                    {
-                        codProducto = rdrProducto[0].ToString();
-                    }
-                }
 
 
 

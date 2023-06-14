@@ -12,6 +12,7 @@ using System.Data.OleDb;
 
 namespace PryVentasVerduleros_Cantallops
 {
+    
     public partial class frmVentas : Form
     {
         
@@ -32,6 +33,12 @@ namespace PryVentasVerduleros_Cantallops
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            ClsConexion objCnn = new ClsConexion();
+            objCnn.RegistrarVenta(cmbVendedor.Text, cmbProducto.Text, dtpFechaVenta.Value, txtCantidad.Text);
+        }
+
+        private void mrcVenta_Enter(object sender, EventArgs e)
         {
 
         }

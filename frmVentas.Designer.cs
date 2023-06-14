@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.mrcVenta = new System.Windows.Forms.GroupBox();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnRegistrar = new System.Windows.Forms.Button();
@@ -38,6 +38,8 @@
             this.cmbVendedor = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.dtpFechaVenta = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
             this.mrcVenta.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,29 +53,32 @@
             this.lblTitulo.TabIndex = 1;
             this.lblTitulo.Text = "VERDULERIA";
             // 
-            // textBox1
+            // txtCantidad
             // 
-            this.textBox1.Location = new System.Drawing.Point(9, 172);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 6;
+            this.txtCantidad.Location = new System.Drawing.Point(9, 230);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(121, 20);
+            this.txtCantidad.TabIndex = 6;
             // 
             // mrcVenta
             // 
+            this.mrcVenta.Controls.Add(this.label4);
+            this.mrcVenta.Controls.Add(this.dtpFechaVenta);
             this.mrcVenta.Controls.Add(this.btnBorrar);
             this.mrcVenta.Controls.Add(this.btnRegistrar);
             this.mrcVenta.Controls.Add(this.cmbProducto);
-            this.mrcVenta.Controls.Add(this.textBox1);
+            this.mrcVenta.Controls.Add(this.txtCantidad);
             this.mrcVenta.Controls.Add(this.label3);
             this.mrcVenta.Controls.Add(this.cmbVendedor);
             this.mrcVenta.Controls.Add(this.label2);
             this.mrcVenta.Controls.Add(this.label1);
             this.mrcVenta.Location = new System.Drawing.Point(12, 63);
             this.mrcVenta.Name = "mrcVenta";
-            this.mrcVenta.Size = new System.Drawing.Size(272, 223);
+            this.mrcVenta.Size = new System.Drawing.Size(272, 269);
             this.mrcVenta.TabIndex = 7;
             this.mrcVenta.TabStop = false;
             this.mrcVenta.Text = "NUEVA VENTA";
+            this.mrcVenta.Enter += new System.EventHandler(this.mrcVenta_Enter);
             // 
             // btnBorrar
             // 
@@ -126,7 +131,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(43, 156);
+            this.label2.Location = new System.Drawing.Point(26, 214);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 1;
@@ -141,12 +146,28 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Vendedor";
             // 
+            // dtpFechaVenta
+            // 
+            this.dtpFechaVenta.Location = new System.Drawing.Point(9, 173);
+            this.dtpFechaVenta.Name = "dtpFechaVenta";
+            this.dtpFechaVenta.Size = new System.Drawing.Size(121, 20);
+            this.dtpFechaVenta.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(43, 157);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(37, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Fecha";
+            // 
             // frmVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.ClientSize = new System.Drawing.Size(307, 312);
+            this.ClientSize = new System.Drawing.Size(307, 359);
             this.Controls.Add(this.mrcVenta);
             this.Controls.Add(this.lblTitulo);
             this.Name = "frmVentas";
@@ -161,7 +182,7 @@
 
         #endregion
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.GroupBox mrcVenta;
         private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.Button btnRegistrar;
@@ -170,6 +191,8 @@
         private System.Windows.Forms.ComboBox cmbVendedor;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker dtpFechaVenta;
     }
 }
 
