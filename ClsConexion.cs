@@ -57,10 +57,10 @@ namespace PryVentasVerduleros_Cantallops
                 {
                     dtProducto.Load(rdrProducto);
                     cmbProducto.DataSource = dtProducto;
-                    cmbProducto.ValueMember = "Codigo del Producto";
+                    cmbProducto.ValueMember = "IdProducto";
                     cmbProducto.DisplayMember = "NomProducto";
                 }
-               
+
 
 
             }
