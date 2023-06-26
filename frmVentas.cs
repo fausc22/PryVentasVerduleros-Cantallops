@@ -35,7 +35,8 @@ namespace PryVentasVerduleros_Cantallops
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             ClsConexion objCnn = new ClsConexion();
-            objCnn.RegistrarVenta(cmbVendedor.Text, cmbProducto.Text, dtpFechaVenta.Value, txtCantidad.Text);
+            objCnn.RegistrarVenta(Convert.ToInt32(cmbVendedor.SelectedValue), Convert.ToInt32(cmbProducto.SelectedValue), dtpFechaVenta.Value, Convert.ToInt32(txtCantidad.Text));
+            MessageBox.Show("Venta registrada!", "", MessageBoxButtons.OK);
         }
 
         private void mrcVenta_Enter(object sender, EventArgs e)

@@ -71,11 +71,11 @@ namespace PryVentasVerduleros_Cantallops
             }
         }
 
-        public void RegistrarVenta(string Vendedor, string Producto, DateTime FechaVenta,  string Cantidad)
+        public void RegistrarVenta(int Vendedor, int Producto, DateTime FechaVenta,  int Cantidad)
         {
             
             string conexion = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=VERDULEROS.mdb;";
-            string sql = "INSERT INTO Ventas ([Cod Vendedor], [Cod Producto], Fecha, Kilos) VALUES ('" + Vendedor + "' , '" + Producto + "' , '" + FechaVenta.ToShortDateString() + "' , '" + Cantidad + "')";
+            string sql = "INSERT INTO Ventas ([Cod Vendedor], [Cod Producto], Fecha, Kilos) VALUES (@vendedor, @producto, @fechaventa, @cantidad)";
             try 
             {
                 cnn = new OleDbConnection(conexion);
@@ -84,7 +84,13 @@ namespace PryVentasVerduleros_Cantallops
                 cmdVendedor.Connection.Open();
                 cmdVendedor.CommandType = CommandType.Text;
                 cmdVendedor.CommandText = sql;
+                string FechaString = FechaVenta.ToShortDateString();
+                cmdVendedor.Parameters.AddWithValue("@vendedor", Vendedor);
+                cmdVendedor.Parameters.AddWithValue("@producto", Producto);
+                cmdVendedor.Parameters.AddWithValue("@fechaventa", FechaString);
+                cmdVendedor.Parameters.AddWithValue("@cantidad", Cantidad);
 
+                
                 cmdVendedor.ExecuteNonQuery();
 
 
